@@ -1,21 +1,236 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>23131</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Oainin哦爱您</title>
+<link rel="shortcut icon" href="/img/Oainin.png" type=" image/png" />
+<link href="/css/phone_index.css" rel="stylesheet" type="text/css" />
 <style>
-*{
-margin:0;
-padding:0;
-}
-#header{
-width:100%;
-height:200px;
-background-color:#ff0;
-}
+
 </style>
+<script type="text/javascript" src='/js/jquery-3.2.1.min.js'></script>
+<script type="text/javascript">
+	var H = $(window).height();
+	var W = $(window).width();
+	var s = [ '/img/1e79df4d-3412-4c3b-84f4-e5d3b7a6ab39.jpg',
+			'/img/7262b245-f255-46cf-9707-a5c73cd00058.jpg',
+			'/img/01e00619-2583-400b-b611-126d03eb1a94.jpg' ];
+	var num = 0;
+	var num1 = 0;
+	$(function() {
+		$('#header').css({
+			"width" : W + "px",
+			"height" : H / 14 + "px",
+			"display" : "none",
+			//"border-bottom" : "1px solid",
+			//"background": "linear-gradient(#000, #eee)",
+			"opacity" : "0.3"
+		});
+		$('#foot').css({
+			"width" : W + "px",
+			"height" : H / 6 + "px",
+			"border" : "1px solid"
+		});
+		$('#headercontent').css({
+			"width" : W + "px",
+			"height" : H / 14 + "px",
+			"display" : "none",
+			"position" : "absolute",
+			left : "0",
+			top : "0"
+
+		});
+		$('#content').css({
+			"width" : W + "px",
+			"height" : "auto"
+		});
+		$('#topcontent').css({
+			width : W + "px",
+			height : H - H / 6 + "px",
+			"margin" : "0 auto"
+
+		});
+		$('#toptop').css({
+			width : W + "px",
+			height : H - H / 6 + "px",
+			"margin" : "0 auto",
+			"border" : "1px solid",
+			"background" : "#fff"
+
+		});
+		$('#comlogo').css({
+			"margin-top":(H - H / 6)/4 + "px"
+			
+		});
+		$('#comlogo1').css({
+			"margin-top":(H - H / 6)/2 + "px"
+			
+		});
+		$('#bottomcontent').css({
+			width : W + "px",
+			height : H + "px",
+			"margin" : "000 auto",
+			"border" : "1px solid",
+			"background" : "#fff"
+
+		});
+		$('#centercontent').css({
+			width : W + "px",
+			height : 200 + "px",
+			"margin" : "0 auto"
+		
+		});
+		$('#centercontents').css({
+			width : W + "px",
+			height : 200 + "px",
+			"margin" : "0 auto",
+			"display":"none",
+			"background" : "#fff"
+			
+		});
+		$('#nav').css("line-height", H / 14 + "px");
+		$("#header,#headercontent").slideDown(2000);
+		$('#phone').click(function () {
+			var x=H-H/14-H/6;
+			$('#borders').slideUp();
+			$('#content').slideUp();
+			$('#centercontents').css("height",x+"px");
+			$('#centercontents').slideDown();
+		});
+		setInterval(function() {
+			$('body').css({
+				"background" : "url(" + s[num] + ") no-repeat fixed",
+				"background-size" : "100% 100%"
+			});
+			num++;
+			if (num > 2) {
+				num = 0;
+			}
+		}, 10000);
+		setInterval(function() {
+			if ($('#logoleft').width() == W) {
+				$('#logoright').attr("src", s[num1]);
+				$('#logoleft').animate({
+					width : "0"
+				}, 1000);
+				$('#logoright').animate({
+					width : W + "px"
+				}, 1000);
+			} else {
+				$('#logoleft').attr("src", s[num1]);
+				$('#logoright').animate({
+					width : "0"
+				}, 1000);
+				$('#logoleft').animate({
+					width : W + "px"
+				}, 1000);
+			}
+			num1++;
+
+			if (num1 > s.length) {
+				num1 = 0;
+			}
+		}, 10000);
+		var image = new Image();  
+		image.src = "/img/1e79df4d-3412-4c3b-84f4-e5d3b7a6ab39.jpg";  
+		image.onload = function(){  
+		  var base64 = getBase64Image(image);  
+		  console.log(base64);  
+		} 
+	});
+	function getBase64Image(img) {  
+	     var canvas = document.createElement("canvas");  
+	     canvas.width = img.width;  
+	     canvas.height = img.height;  
+	     var ctx = canvas.getContext("2d");  
+	     ctx.drawImage(img, 0, 0, img.width, img.height);  
+	     var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();  
+	     var dataURL = canvas.toDataURL("image/"+ext);  
+	     return dataURL;  
+	}  
+
+	
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 </head>
 <body>
-<div id="header">
-11231
-</div>
+	<div id='header'></div>
+	<div id="headercontent">
+		<ul id="nav">
+			<li><a href="/Introduction/Introduction">网站简介</a></li>
+			<li><a href="/search/search">网页导航</a></li>
+			<li><a href="/index.jsp">Oainin</a></li>
+			<li><a href="http://blog.oainin.com">我的博客</a></li>
+			<li id="phone">联系我们</li>
+		</ul>
+	</div>
+	<div id='content'>
+		<div id="topcontent">
+			<img id="logoleft" alt=""
+				src="/img/01e00619-2583-400b-b611-126d03eb1a94.jpg"
+				style="width: 100%; height: 100%;"> <img id="logoright" alt=""
+				src="" style="width: 0; height: 100%;">
+		</div>
+		<div id="toptop">
+		<div id="lefttop">
+		<img alt="" src="/img/Oainin.png" id="comlogo"  height="50%" style="margin: 0 auto;text-align: center;width: 40%;display: block;">
+		</div>
+		<div id="righttop">
+		<h2 style="text-align: center;margin-top: 20px;">网站介绍</h2>
+		<p style="text-indent: 32px;line-height: 34px;margin-top: 20px;">本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站</p>
+		</div>
+		</div>
+		<div id="centercontent">
+			<h1
+				style="text-align: center; width: 100%; line-height: 200px; font-size: 70px; color: #eee; font-family: 'Times New Roman';">Oainin</h1>
+		</div>
+		<div id="bottomcontent">
+		<div id="rightbottom">
+		<h2 style="text-align: center;margin-top: 20px;">网站介绍</h2>
+		<p style="text-indent: 32px;line-height: 34px;margin-top: 20px;">本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站</p>
+		</div>
+		<div id="leftbottom">
+		<img alt="" src="/img/Oainin.png" id="comlogo1"  height="50%" style="margin: 0 auto;text-align: center;width: 40%;display: block;">
+		</div>
+	
+		</div>
+	</div>
+	
+	<div id="centercontents">
+		<h1>
+			<img src="/img/Oainin.png" />联系我们
+		</h1>
+		<p
+			style="width: 40%; padding-top: 30px; margin: 0 auto; line-height: 30px;">
+			网站追求极致，期待你的建议<br> 联系我们的邮件：<a
+				href="Mailto:in@oainin.com?CC=in@oainin.com&BCC=in@oainin.com&Subject=来自Oainin主网页的问题&Body=请在这里输入你遇到的问题">in@oainin.com</a><br>
+			或者请到我的博客留言<a href="http://www.aimishiyou.top">Amos博客</a><br> <img
+				alt="" src="/img/erweima.png" width="80" height="80">
+		</p>
+	</div>
+	<div id='foot'>
+		<p style="color: #fff; text-align: center; padding-top: 10px;line-height: 24px;">
+			本网站内容属于Oainin.com&copy;Copyright版权所有，禁止转载，谢谢！2017-2018<br>
+			<a
+				href='http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51132102000140'><img alt="" src="/img/ba.png">川公网安备
+				51132102000140号</a><br>
+			<a href="http://www.miitbeian.gov.cn/">蜀ICP备17036264号-2</a>
+		</p>
+	</div>
 </body>
 </html>
