@@ -1,24 +1,82 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Oainin哦爱您</title>
-<link rel="shortcut icon" href="/img/Oainin.png" type=" image/png" />
-<link href="/css/phone_index.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="img/Oainin.png" type=" image/png" />
 <style>
+* {
+	margin: 0;
+	padding: 0;
+}
 
+body {
+	background: url("img/01e00619-2583-400b-b611-126d03eb1a94.jpg")
+		no-repeat fixed;
+	background-size: 100% 100%;
+	background-position: center;
+}
+
+#nav {
+	width: 50%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+#nav li {
+	float: left;
+	width: 20%;
+	text-align: center;
+	list-style: none;
+	cursor: pointer;
+	color: #eee;
+}
+
+#nav li a {
+	text-decoration: none;
+	color: #eee;
+}
+
+#nav li a:hover {
+	color: #fff;
+}
+
+#nav li:hover {
+	color: #fff;
+}
+
+#topcontent img {
+	float: left;
+}
+
+#foot a {
+	color: #fff;
+	text-decoration: none;
+}
+
+#toptop div {
+	width: 50%;
+	float: left;
+	height: 100%;
+}
+
+#bottomcontent div {
+	width: 50%;
+	float: left;
+	height: 100%;
+}
 </style>
-<script type="text/javascript" src='/js/jquery-3.2.1.min.js'></script>
+<script type="text/javascript" src='js/jquery-3.2.1.min.js'></script>
 <script type="text/javascript">
 	var H = $(window).height();
 	var W = $(window).width();
-	var s = [ '/img/1e79df4d-3412-4c3b-84f4-e5d3b7a6ab39.jpg',
-			'/img/7262b245-f255-46cf-9707-a5c73cd00058.jpg',
-			'/img/01e00619-2583-400b-b611-126d03eb1a94.jpg' ];
+	var s = [ 'img/1e79df4d-3412-4c3b-84f4-e5d3b7a6ab39.jpg',
+			'img/7262b245-f255-46cf-9707-a5c73cd00058.jpg',
+			'img/01e00619-2583-400b-b611-126d03eb1a94.jpg' ];
 	var num = 0;
 	var num1 = 0;
 	$(function() {
+	
 		$('#header').css({
 			"width" : W + "px",
 			"height" : H / 14 + "px",
@@ -41,9 +99,16 @@
 			top : "0"
 
 		});
+		$('#centercontent').css({
+			"width" : W + "px",
+			"height" : H-H/14+"px",
+			"background":"#fff",
+			"display":"none"
+		});
 		$('#content').css({
 			"width" : W + "px",
-			"height" : "auto"
+			"height" : "auto",
+			"display":"none"
 		});
 		$('#topcontent').css({
 			width : W + "px",
@@ -79,25 +144,10 @@
 			width : W + "px",
 			height : 200 + "px",
 			"margin" : "0 auto"
-		
-		});
-		$('#centercontents').css({
-			width : W + "px",
-			height : 200 + "px",
-			"margin" : "0 auto",
-			"display":"none",
-			"background" : "#fff"
-			
 		});
 		$('#nav').css("line-height", H / 14 + "px");
 		$("#header,#headercontent").slideDown(2000);
-		$('#phone').click(function () {
-			var x=H-H/14-H/6;
-			$('#borders').slideUp();
-			$('#content').slideUp();
-			$('#centercontents').css("height",x+"px");
-			$('#centercontents').slideDown();
-		});
+
 		setInterval(function() {
 			$('body').css({
 				"background" : "url(" + s[num] + ") no-repeat fixed",
@@ -131,13 +181,19 @@
 			if (num1 > s.length) {
 				num1 = 0;
 			}
-		}, 10000);
-		var image = new Image();  
-		image.src = "/img/1e79df4d-3412-4c3b-84f4-e5d3b7a6ab39.jpg";  
+		}, 5000);
+		$('#content').slideDown(2000);
+		$('#phone').click(function () {
+			$('#content').slideUp();
+			$('#centercontent').css("height",H-H/14-H/6+"px");
+			$('#centercontent').slideDown();
+		});
+		/* var image = new Image();  
+		image.src = "/Oainin/img/1e79df4d-3412-4c3b-84f4-e5d3b7a6ab39.jpg";  
 		image.onload = function(){  
 		  var base64 = getBase64Image(image);  
 		  console.log(base64);  
-		} 
+		}  */
 	});
 	function getBase64Image(img) {  
 	     var canvas = document.createElement("canvas");  
@@ -152,84 +208,71 @@
 
 	
 </script>
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
 </head>
 <body>
 	<div id='header'></div>
 	<div id="headercontent">
 		<ul id="nav">
-			<li><a href="/Introduction/Introduction">网站简介</a></li>
-			<li><a href="/search/search">网页导航</a></li>
-			<li><a href="/index.jsp">Oainin</a></li>
+		<li><a href="introduction.html">网站简介</a></li>
+			<li><a href="seach.html">网页导航</a></li>
+			<li><a href="index.html">Oainin</a></li>
 			<li><a href="http://blog.oainin.com">我的博客</a></li>
 			<li id="phone">联系我们</li>
 		</ul>
 	</div>
+	<div id="centercontent">
+		<h1>
+			<img src="img/Oainin.png" />联系我们
+		</h1>
+		<p style="width: 40%;  padding-top: 30px;margin: 0 auto;line-height: 30px;">
+			网站追求极致，期待你的建议<br>
+			联系我们的邮件：<a href="Mailto:in@oainin.com?CC=in@oainin.com&BCC=in@oainin.com&Subject=来自Oainin主网页的问题&Body=请在这里输入你遇到的问题">in@oainin.com</a><br>
+			或者请到我的博客留言<a href="http://www.aimishiyou.top">Amos博客</a><br>
+			<img alt="" src="img/erweima.png" width="80" height="80">
+		</p>
+	</div>
 	<div id='content'>
 		<div id="topcontent">
 			<img id="logoleft" alt=""
-				src="/img/01e00619-2583-400b-b611-126d03eb1a94.jpg"
+				src="img/01e00619-2583-400b-b611-126d03eb1a94.jpg"
 				style="width: 100%; height: 100%;"> <img id="logoright" alt=""
 				src="" style="width: 0; height: 100%;">
 		</div>
 		<div id="toptop">
-		<div id="lefttop">
-		<img alt="" src="/img/Oainin.png" id="comlogo"  height="50%" style="margin: 0 auto;text-align: center;width: 40%;display: block;">
-		</div>
-		<div id="righttop">
-		<h2 style="text-align: center;margin-top: 20px;">网站介绍</h2>
-		<p style="text-indent: 32px;line-height: 34px;margin-top: 20px;">本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站</p>
-		</div>
+			<div id="lefttop">
+				<img alt="" src="img/Oainin.png" id="comlogo" height="50%"
+					style="margin: 0 auto; text-align: center; width: 40%; display: block;">
+			</div>
+			<div id="righttop">
+				<h2 style="text-align: center; margin-top: 20px;">网站介绍</h2>
+				<p
+					style="text-indent: 32px; line-height: 34px; font-size: 18px; margin-top: 20px;">本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站</p>
+			</div>
 		</div>
 		<div id="centercontent">
 			<h1
 				style="text-align: center; width: 100%; line-height: 200px; font-size: 70px; color: #eee; font-family: 'Times New Roman';">Oainin</h1>
 		</div>
 		<div id="bottomcontent">
-		<div id="rightbottom">
-		<h2 style="text-align: center;margin-top: 20px;">网站介绍</h2>
-		<p style="text-indent: 32px;line-height: 34px;margin-top: 20px;">本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站</p>
+			<div id="rightbottom">
+				<h2 style="text-align: center; margin-top: 20px;">网站介绍</h2>
+				<p
+					style="text-indent: 32px; line-height: 34px; font-size: 18px; margin-top: 20px;">本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站</p>
+			</div>
+			<div id="leftbottom">
+				<img alt="" src="img/Oainin.png" id="comlogo1" height="50%"
+					style="margin: 0 auto; text-align: center; width: 40%; display: block;">
+			</div>
+
 		</div>
-		<div id="leftbottom">
-		<img alt="" src="/img/Oainin.png" id="comlogo1"  height="50%" style="margin: 0 auto;text-align: center;width: 40%;display: block;">
-		</div>
-	
-		</div>
-	</div>
-	
-	<div id="centercontents">
-		<h1>
-			<img src="/img/Oainin.png" />联系我们
-		</h1>
-		<p
-			style="width: 40%; padding-top: 30px; margin: 0 auto; line-height: 30px;">
-			网站追求极致，期待你的建议<br> 联系我们的邮件：<a
-				href="Mailto:in@oainin.com?CC=in@oainin.com&BCC=in@oainin.com&Subject=来自Oainin主网页的问题&Body=请在这里输入你遇到的问题">in@oainin.com</a><br>
-			或者请到我的博客留言<a href="http://www.aimishiyou.top">Amos博客</a><br> <img
-				alt="" src="/img/erweima.png" width="80" height="80">
-		</p>
 	</div>
 	<div id='foot'>
-		<p style="color: #fff; text-align: center; padding-top: 10px;line-height: 24px;">
-			本网站内容属于Oainin.com&copy;Copyright版权所有，禁止转载，谢谢！2017-2018<br>
-			<a
-				href='http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51132102000140'><img alt="" src="/img/ba.png">川公网安备
-				51132102000140号</a><br>
-			<a href="http://www.miitbeian.gov.cn/">蜀ICP备17036264号-2</a>
+		<p
+			style="color: #fff; text-align: center; padding-top: 10px; line-height: 24px;">
+			本网站内容属于Oainin.com&copy;Copyright版权所有，禁止转载，谢谢！2017-2018<br> <a
+				href='http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51132102000140'><img
+				alt="" src="img/ba.png">川公网安备 51132102000140号</a><br> <a
+				href="http://www.miitbeian.gov.cn/">蜀ICP备17036264号-2</a>
 		</p>
 	</div>
 </body>
