@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Oainin上传云端</title>
+		<link rel="shortcut icon" href="img/Oainin.png" type="image/png" />
+		<link href="css/index.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/qiniu.min.js"></script>
+		<script type="text/javascript">
+		
+			
+				
+			function onc() {
+				
+				var keys = document.getElementById('key');
+				var bodys = document.body;
+				var files = document.getElementById('file').value;
+				$('.name').text(files.substring(files.lastIndexOf('\\') + 1));
+				keys.value = files.substring(files.lastIndexOf('\\') + 1);
+				}
+			
+			  function showPreview(source) {
+    	onc();
+      var file = source.files[0];
+      if(window.FileReader) {
+          var fr = new FileReader();
+          console.log(fr);
+          fr.onloadend = function(e) {
+           $('#filediv').css({
+           	"background":"url("+e.target.result+")",
+           	"background-size":"100% 100%"
+           });
+          };
+          fr.readAsDataURL(file);
+      }
+    }
+		</script>
+	</head>
+
+	<body>
+		<img id="portrait" src="" />
+		<div id="Update">
+			<h2>Oainin七牛云上传存储中心</h2>
+			<form method="post" action="http://upload-z2.qiniup.com/" enctype="multipart/form-data">
+				<input name="token" type="hidden" value="NKaS_9PlBCc4vgx0ZQSH5_mkSAotYIi589VJIQBR:IWYoMk20ChYqizVLmagSUAlzqfk=:eyJzY29wZSI6Im9haW5pbiIsImRlYWRsaW5lIjoyNTIxMTMyMzkxfQ==">
+				<input name="key" id="key" type="hidden">
+				<table>
+					<tr>
+						<td rowspan="3" width="30%">
+							<div id="filediv"><input name="file" type="file" id="file"  onchange="showPreview(this)" /></div>
+						</td>
+						<td width="10%">1</td>
+						<td width="60%">2</td>
+					</tr>
+					<tr>
+
+						<td>文件名：</td>
+						<td class="name"></td>
+					</tr>
+					<tr>
+						<td>检测：</td>
+						<td>6</td>
+					</tr>
+					<tr>
+						<td>请点击图标准备上传检测</td>
+						<td>8</td>
+						<td>9</td>
+					</tr>
+					<tr>
+						<td>10</td>
+						<td>11</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>7</td>
+						<td colspan="2"><input type="submit" id="submitbutton" /></td>
+
+					</tr>
+				</table>
+
+			</form>
+		</div>
+	
+
+	</body>
+
+</html>

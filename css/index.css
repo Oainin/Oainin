@@ -1,0 +1,80 @@
+@media only screen and (min-width: 100px) and (max-width: 640px) {
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	body {
+		background: url(../img/535eb53d44c6361e075d23e9c6358c9d.jpg)no-repeat fixed;
+		background-size: 100% 100%;
+		background-position: center;
+	}
+}
+
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	body {
+		background: url(../img/535eb53d44c6361e075d23e9c6358c9d.jpg)no-repeat fixed;
+		background-size: 100% 100%;
+		background-position: center;
+	}
+}
+
+@media only screen and (min-width: 1024px) {
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	body {
+		background: url(../img/535eb53d44c6361e075d23e9c6358c9d.jpg)no-repeat fixed;
+		background-size: 100% 100%;
+		background-position: center;
+	}
+	#Update {
+		width: 50%;
+		height: 500px;
+		border: 10px solid #aaa;
+		margin: 0 auto;
+		margin-top: 50px;
+		border-radius: 50px;
+	}
+	#Update form{
+		height: 400px;
+		margin-top: 10px;
+	}
+	#Update form table{
+		width: 100%;
+		height: 400px;
+	}
+	#Update form table tr td{
+		text-align: center;
+	}
+	#file{
+		width: 100px;
+		height: 140px;
+		opacity: 0;
+		
+	}
+	#filediv{
+		width: 100px;
+		height: 140px;
+		background: url(../img/imgadd.png) no-repeat;
+		background-size: 100% 100%;
+	margin: 0 auto;
+		
+	}
+	#Update h2{
+		text-align: center;
+		padding-top: 10px;
+		color: #ccc;
+	}
+	#submitbutton{
+		width: 50%;
+		height: 90%;
+		margin: 0 auto;
+		display: block;
+		line-height: 100%;
+	}
+}
