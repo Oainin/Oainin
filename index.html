@@ -9,33 +9,64 @@
 		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="js/qiniu.min.js"></script>
 		<script type="text/javascript">
-		
-			
+			$(function() {
+				if($('#file').val() == '' && $('.name').val() == '') {
+					$('#submitbutton').attr("disabled", true);
+				} else {
+					$('#submitbutton').attr("disabled", false);
+				}
 				
+			});
+
 			function onc() {
-				
-				var keys = document.getElementById('key');
+				if($('#file').val() == '' && $('.name').val() == '') {
+					$('#submitbutton').attr("disabled", true);
+						$('.colors').css({
+					"background":"#f00"
+					});
+				} else {
+					$('#submitbutton').attr("disabled", false);
+						$('.colors').css({
+					"background":"#0f0"
+					});
+				}
+				//var keys = document.getElementById('key');
 				var bodys = document.body;
 				var files = document.getElementById('file').value;
-				$('.name').text(files.substring(files.lastIndexOf('\\') + 1));
-				keys.value = files.substring(files.lastIndexOf('\\') + 1);
+				$('.name').val(files.substring(files.lastIndexOf('\\') + 1));
+				$('#key').val($('.name').val());
+			}
+
+			function showPreview(source) {
+				onc();
+				var file = source.files[0];
+				if(window.FileReader) {
+					var fr = new FileReader();
+					console.log(fr);
+					fr.onloadend = function(e) {
+						$('#filediv').css({
+							"background": "url(" + e.target.result + ")",
+							"background-size": "100% 100%"
+						});
+					};
+					fr.readAsDataURL(file);
 				}
-			
-			  function showPreview(source) {
-    	onc();
-      var file = source.files[0];
-      if(window.FileReader) {
-          var fr = new FileReader();
-          console.log(fr);
-          fr.onloadend = function(e) {
-           $('#filediv').css({
-           	"background":"url("+e.target.result+")",
-           	"background-size":"100% 100%"
-           });
-          };
-          fr.readAsDataURL(file);
-      }
-    }
+			}
+
+			function textkey() {
+				$('#key').val($('.name').val());
+				if($('.name').val() == '' || $('#file').val() == '') {
+					$('#submitbutton').attr("disabled", true);
+						$('.colors').css({
+					"background":"#f00"
+					});
+				} else {
+					$('#submitbutton').attr("disabled", false);
+					$('.colors').css({
+					"background":"#0f0"
+					});
+				}
+			}
 		</script>
 	</head>
 
@@ -49,7 +80,7 @@
 				<table>
 					<tr>
 						<td rowspan="3" width="30%">
-							<div id="filediv"><input name="file" type="file" id="file"  onchange="showPreview(this)" /></div>
+							<div id="filediv"><input name="file" type="file" id="file" onchange="showPreview(this)" /></div>
 						</td>
 						<td width="10%"></td>
 						<td width="60%"></td>
@@ -57,11 +88,11 @@
 					<tr>
 
 						<td>文件名：</td>
-						<td class="name"></td>
+						<td><input class="name" type="text" onchange="textkey()"></td>
 					</tr>
 					<tr>
 						<td>检测：</td>
-						<td></td>
+						<td><div class="colors"></div><div class="colors"></div><div class="colors"></div></td>
 					</tr>
 					<tr>
 						<td>请点击图标准备上传检测</td>
@@ -82,7 +113,6 @@
 
 			</form>
 		</div>
-	
 
 	</body>
 
