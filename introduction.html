@@ -108,7 +108,7 @@ $(function() {
 		</ul>
 	</div>
 
-
+   <p id="m"></p>
 	<div id="centercontent">
 		<h1>
 			<img src="img/Oainin.png" />联系我们
@@ -130,5 +130,17 @@ $(function() {
 				href="http://www.miitbeian.gov.cn/">蜀ICP备17036264号-2</a>
 		</p>
 	</div>
+		<script>
+		navigator.geolocation.getCurrentPosition(
+function(l){
+ var latitude =l.coords.latitude;//纬度
+ var longitude = l.coords.longitude;//经度
+
+var t=document.getElementById('m');
+t.innerText='纬度:'+latitude+',经度:'+longitude;
+alert('纬度:'+latitude+',经度:'+longitude);
+}
+);
+	</script>
 </body>
 </html>
