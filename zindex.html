@@ -1,280 +1,356 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Oainin哦爱您</title>
-<link rel="shortcut icon" href="img/Oainin.png" type=" image/png" />
-<style>
-* {
-	margin: 0;
-	padding: 0;
-}
 
-body {
-	background: url("img/01e00619-2583-400b-b611-126d03eb1a94.jpg")
-		no-repeat fixed;
-	background-size: 100% 100%;
-	background-position: center;
-}
-
-#nav {
-	width: 50%;
-	height: 100%;
-	margin: 0 auto;
-}
-
-#nav li {
-	float: left;
-	width: 20%;
-	text-align: center;
-	list-style: none;
-	cursor: pointer;
-	color: #eee;
-}
-
-#nav li a {
-	text-decoration: none;
-	color: #eee;
-}
-
-#nav li a:hover {
-	color: #fff;
-}
-
-#nav li:hover {
-	color: #fff;
-}
-
-#topcontent img {
-	float: left;
-}
-
-#foot a {
-	color: #fff;
-	text-decoration: none;
-}
-
-#toptop div {
-	width: 50%;
-	float: left;
-	height: 100%;
-}
-
-#bottomcontent div {
-	width: 50%;
-	float: left;
-	height: 100%;
-}
-</style>
-<script type="text/javascript" src='js/jquery-3.2.1.min.js'></script>
-<script type="text/javascript">
-	var H = $(window).height();
-	var W = $(window).width();
-	var s = [ 'img/1e79df4d-3412-4c3b-84f4-e5d3b7a6ab39.jpg',
-			'img/7262b245-f255-46cf-9707-a5c73cd00058.jpg',
-			'img/01e00619-2583-400b-b611-126d03eb1a94.jpg' ];
-	var num = 0;
-	var num1 = 0;
-	$(function() {
-	
-		$('#header').css({
-			"width" : W + "px",
-			"height" : H / 14 + "px",
-			"display" : "none",
-			//"border-bottom" : "1px solid",
-			//"background": "linear-gradient(#000, #eee)",
-			"opacity" : "0.3"
-		});
-		$('#foot').css({
-			"width" : W + "px",
-			"height" : H / 6 + "px",
-			"border" : "1px solid"
-		});
-		$('#headercontent').css({
-			"width" : W + "px",
-			"height" : H / 14 + "px",
-			"display" : "none",
-			"position" : "absolute",
-			left : "0",
-			top : "0"
-
-		});
-		$('#centercontent').css({
-			"width" : W + "px",
-			"height" : H-H/14+"px",
-			"background":"#fff",
-			"display":"none"
-		});
-		$('#content').css({
-			"width" : W + "px",
-			"height" : "auto",
-			"display":"none"
-		});
-		$('#topcontent').css({
-			width : W + "px",
-			height : H - H / 6 + "px",
-			"margin" : "0 auto"
-
-		});
-		$('#toptop').css({
-			width : W + "px",
-			height : H - H / 6 + "px",
-			"margin" : "0 auto",
-			"border" : "1px solid",
-			"background" : "#fff"
-
-		});
-		$('#comlogo').css({
-			"margin-top":(H - H / 6)/4 + "px"
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+		<title>Oainin哦爱您</title>
+		<link rel="shortcut icon" href="img/Oainin.png" type=" image/png" />
+		<!-- 新 Bootstrap 核心 CSS 文件 -->
+		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<!-- 可选的Bootstrap主题文件（一般不使用） -->
+		<!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>-->
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
 			
-		});
-		$('#comlogo1').css({
-			"margin-top":(H - H / 6)/2 + "px"
+			#content {
+				width: 80%;
+			}
 			
-		});
-		$('#bottomcontent').css({
-			width : W + "px",
-			height : H + "px",
-			"margin" : "000 auto",
-			"border" : "1px solid",
-			"background" : "#fff"
-
-		});
-		$('#centercontent').css({
-			width : W + "px",
-			height : 200 + "px",
-			"margin" : "0 auto"
-		});
-		$('#nav').css("line-height", H / 14 + "px");
-		$("#header,#headercontent").slideDown(2000);
-
-		setInterval(function() {
-			$('body').css({
-				"background" : "url(" + s[num] + ") no-repeat fixed",
-				"background-size" : "100% 100%"
-			});
-			num++;
-			if (num > 2) {
-				num = 0;
+			#indexcontent div {
+				float: left;
 			}
-		}, 10000);
-		setInterval(function() {
-			if ($('#logoleft').width() == W) {
-				$('#logoright').attr("src", s[num1]);
-				$('#logoleft').animate({
-					width : "0"
-				}, 1000);
-				$('#logoright').animate({
-					width : W + "px"
-				}, 1000);
-			} else {
-				$('#logoleft').attr("src", s[num1]);
-				$('#logoright').animate({
-					width : "0"
-				}, 1000);
-				$('#logoleft').animate({
-					width : W + "px"
-				}, 1000);
+			.media-list{
+				padding-top: 50px;
 			}
-			num1++;
-
-			if (num1 > s.length) {
-				num1 = 0;
+			#headerbottom img{
+				margin-left:90px;
 			}
-		}, 5000);
-		$('#content').slideDown(2000);
-		$('#phone').click(function () {
-			$('#content').slideUp();
-			$('#centercontent').css("height",H-H/14-H/6+"px");
-			$('#centercontent').slideDown();
-		});
-		/* var image = new Image();  
-		image.src = "/Oainin/img/1e79df4d-3412-4c3b-84f4-e5d3b7a6ab39.jpg";  
-		image.onload = function(){  
-		  var base64 = getBase64Image(image);  
-		  console.log(base64);  
-		}  */
-	});
-	function getBase64Image(img) {  
-	     var canvas = document.createElement("canvas");  
-	     canvas.width = img.width;  
-	     canvas.height = img.height;  
-	     var ctx = canvas.getContext("2d");  
-	     ctx.drawImage(img, 0, 0, img.width, img.height);  
-	     var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();  
-	     var dataURL = canvas.toDataURL("image/"+ext);  
-	     return dataURL;  
-	}  
+			.media-body{
+				padding-top: 30px;
+			
+			}
+			#videos{
+					position: absolute;
+					top: 50px;
+					right: 70px;
+					width: 500px;
+					height: 300px;
+					border: 1px solid;
+					filter:alpha(opacity=100);opacity:1;
+			}
+			#logins table{
+				width: 100%;
+				height: auto;
+				color: #000000;
+			}
+			#logins table td{
+				text-align: center;
+			}
+		</style>
+	</head>
 
-	
-</script>
-</head>
-<body>
-	<div id='header'></div>
-	<div id="headercontent">
-		<ul id="nav">
-		<li><a href="introduction.html">网站简介</a></li>
-			<li><a href="seach.html">网页导航</a></li>
-			<li><a href="index.html">Oainin</a></li>
-			<li><a href="http://blog.oainin.com">我的博客</a></li>
-			<li id="phone">联系我们</li>
+	<body>
+		<ul id="myTab" class="nav nav-tabs">
+			<li class="active">
+				<a href="#home" data-toggle="tab">
+					Oainin主页</a>
+			</li>
+			<li>
+				<a href="#oa" data-toggle="tab">OA管理系统</a>
+			</li>
+			<li class="dropdown">
+				<a href="#" data-toggle="dropdown" id="myTabDrop2" class="dropdown-toggle">博客<b class="caret"></b></a>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop2">
+					<li>
+						<a href="#blog" tabindex="-1" data-toggle="tab">访问博客主页</a>
+					</li>
+					<li>
+						<a href="#ejb" tabindex="-1" data-toggle="tab">ejb</a>
+					</li>
+				</ul>
+			</li>
+			<li class="dropdown">
+				<a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">
+					关于我们<b class="caret"></b></a>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+					<li>
+						<a href="#blog" tabindex="-1" data-toggle="tab">blog</a>
+					</li>
+					<li>
+						<a href="#ejb" tabindex="-1" data-toggle="tab">ejb</a>
+					</li>
+				</ul>
+			</li>
 		</ul>
-	</div>
-	<div id="centercontent">
-		<h1>
-			<img src="img/Oainin.png" />联系我们
-		</h1>
-		<p style="width: 40%;  padding-top: 30px;margin: 0 auto;line-height: 30px;">
-			网站追求极致，期待你的建议<br>
-			联系我们的邮件：<a href="Mailto:in@oainin.com?CC=in@oainin.com&BCC=in@oainin.com&Subject=来自Oainin主网页的问题&Body=请在这里输入你遇到的问题">in@oainin.com</a><br>
-			或者请到我的博客留言<a href="http://www.aimishiyou.top">Amos博客</a><br>
-			<img alt="" src="img/erweima.png" width="80" height="80">
-		</p>
-	</div>
-	<div id='content'>
-		<div id="topcontent">
-			<img id="logoleft" alt=""
-				src="img/01e00619-2583-400b-b611-126d03eb1a94.jpg"
-				style="width: 100%; height: 100%;"> <img id="logoright" alt=""
-				src="" style="width: 0; height: 100%;">
+		<div id="myTabContent" class="tab-content">
+			<div class="tab-pane fade in active" id="home">
+				<div id="indexcontent">
+					<div>321</div>
+					<div>
+						<div id="myCarousel" class="carousel slide">
+							<!-- 轮播（Carousel）指标 -->
+							<ol class="carousel-indicators">
+								<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+								<li data-target="#myCarousel" data-slide-to="1"></li>
+								<li data-target="#myCarousel" data-slide-to="2"></li>
+							</ol>
+							<!-- 轮播（Carousel）项目 -->
+							<div class="carousel-inner">
+								<div class="item active">
+									<img src="img/01e00619-2583-400b-b611-126d03eb1a94.jpg" alt="First slide">
+									<div class="carousel-caption">csdf</div>
+								</div>
+								<div class="item">
+									<img src="img/1e79df4d-3412-4c3b-84f4-e5d3b7a6ab39.jpg" alt="Second slide">
+									<div class="carousel-caption">标题 2</div>
+								</div>
+								<div class="item">
+									<img src="img/535eb53d44c6361e075d23e9c6358c9d.jpg" alt="Third slide">
+									<div class="carousel-caption">标题 3</div>
+								</div>
+							</div>
+							<!-- 轮播（Carousel）导航 -->
+							<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;
+							</a>
+							<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;
+							</a>
+						</div>
+					</div>
+					<div id="news">1200000000000000000000003</div>
+				</div>
+				<div id="headerbottom">
+                   <ul class="media-list">
+	<li class="media">
+		<a class="media-left" href="#">
+			<img class="media-object" src="img/Oainin.png"
+				 alt="通用的占位符图像">
+		</a>
+		<div class="media-body">
+			<h4 class="media-heading">Oainin网站</h4>
+			<p>Oainin网站为杨正龙开发，请勿随意挖掘本网站内容</p>
+		
+		
 		</div>
-		<div id="toptop">
-			<div id="lefttop">
-				<img alt="" src="img/Oainin.png" id="comlogo" height="50%"
-					style="margin: 0 auto; text-align: center; width: 40%; display: block;">
-			</div>
-			<div id="righttop">
-				<h2 style="text-align: center; margin-top: 20px;">网站介绍</h2>
-				<p
-					style="text-indent: 32px; line-height: 34px; font-size: 18px; margin-top: 20px;">本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站</p>
-			</div>
-		</div>
-		<div id="centercontent">
-			<h1
-				style="text-align: center; width: 100%; line-height: 200px; font-size: 70px; color: #eee; font-family: 'Times New Roman';">Oainin</h1>
-		</div>
-		<div id="bottomcontent">
-			<div id="rightbottom">
-				<h2 style="text-align: center; margin-top: 20px;">网站介绍</h2>
-				<p
-					style="text-indent: 32px; line-height: 34px; font-size: 18px; margin-top: 20px;">本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站本网站为Oainin官方网站</p>
-			</div>
-			<div id="leftbottom">
-				<img alt="" src="img/Oainin.png" id="comlogo1" height="50%"
-					style="margin: 0 auto; text-align: center; width: 40%; display: block;">
-			</div>
+	</li>
 
-		</div>
-	</div>
-	<div id='foot'>
-		<p
-			style="color: #fff; text-align: center; padding-top: 10px; line-height: 24px;">
-			本网站内容属于Oainin.com&copy;Copyright版权所有，禁止转载，谢谢！2017-2018<br> <a
+</ul>
+				</div>
+				<div id="indexcenter">
+					<div id="videos">
+						<video src="http://stroage.oainin.com/Sean%20Paul%E3%80%81Becky%20G.%E3%80%81David%20Guetta%20-%20Mad%20Love.mkv" width="100%" height="100%" controls="controls"></video>
+					</div>
+					
+				</div>
+				<div id="indexcenterbottom">
+					
+				</div>
+				<div id="foot"><p
+			style="color: #fff; text-align: center; padding-top: 30px; line-height: 24px;">
+			本网站内容属于Oainin.com&copy;Copyright版权所有，禁止转载，谢谢！2017-2018<br> <a style="color: #fff;"
 				href='http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51132102000140'><img
-				alt="" src="img/ba.png">川公网安备 51132102000140号</a><br> <a
+				alt="备案图标" src="img/ba.png">川公网安备 51132102000140号</a><br> <a style="color: #fff;"
 				href="http://www.miitbeian.gov.cn/">蜀ICP备17036264号-2</a>
-		</p>
-	</div>
+		</p></div>
+			</div>
+			<div class="tab-pane fade" id="oa">
+				<div id="oalogin">
+					<div id="logins">
+						<form class="form-inline" role="form" id="loginoa">
+						<table >
+							<caption>OA登录系统</caption>
+							<tr>
+								<td></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><button type="button" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-user"></span> User
+</button></td>
+								<td> <div class="form-group">
+      <label class="sr-only" for="email">Email 地址</label>
+      <input type="email" class="form-control" placeholder="Enter email" id="oausername">
+    </div></td>
+							</tr>
+							<tr>
+								<td><button type="button" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-eye-close"></span>Password
+</button></td>
+								<td><div class="form-group">
+      <label class="sr-only" for="pass">密码</label>
+      <input type="password" class="form-control" placeholder="Password" id="oapassword">
+    </div></td>
+							</tr>
+							<tr>
+								<td colspan="2" id="sub"><input type="button" onclick="login()" value="登录" /></td>
+							</tr>
+						</table>
+						
+					</div>
 
-</body>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="blog">
+				<iframe id="blogiframe" width="100%" src="http://blog.oainin.com/"></iframe>
+			</div>
+			<div class="tab-pane fade" id="ejb">
+				<p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
+				</p>
+			</div>
+		</div>
+		<script>
+			var W = $(window).width();
+			var H = $(window).height();
+			$(function() {
+				/*	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+						// 获取已激活的标签页的名称
+						var activeTab = $(e.target).text();
+						// 获取前一个激活的标签页的名称
+						var previousTab = $(e.relatedTarget).text();
+						$(".active-tab span").html(activeTab);
+						$(".previous-tab span").html(previousTab);*/
+						 $("[data-toggle='popover']").popover();
+				$("#home").css({
+					"height": "auto",
+					"width": W + "px",
+					"background": "url(img/535eb53d44c6361e075d23e9c6358c9d.jpg) no-repeat fixed",
+					"background-size": "100% 100%",
+					"background-position": " center"
+				});
+				$("#oa").css({
+					"height": "auto",
+					"width": W + "px",
+					"background": "url(img/535eb53d44c6361e075d23e9c6358c9d.jpg) no-repeat fixed",
+					"background-size": "100% 100%",
+					"background-position": " center"
+				});
+				$("#oalogin").css({
+					"height":H+ "px",
+					"width": W + "px",
+					"background": "#333",
+					"opacity": "0.5",
+					"color": "#fff",
+					"position": "relative"
+				});
+				$('#blogiframe').css({
+					"height": H + "px"
+				});
+				$('#indexcontent').css({
+					"width": "85%",
+					"height": H - H / 3 + 10 + "px",
+					"margin": "0 auto",
+					"padding-top": "10px"
+				});
+				$('#headerbottom').css({
+					"width": "85%",
+					"height": H / 3 + "px",
+					"margin": "0 auto",
+					"background": "#333",
+					"opacity": "0.5",
+					"color": "#fff"
+				});
+				$('#logins').css({
+					"width": W/2+"px",
+					"height": H-H/3 + "px",
+					"margin": "0 auto",
+					"background": "#fff",
+					"position": "absolute",
+					"top": "50px",
+					"left":(W-W/2)/2+"px"
+		
+				});
+				$('#indexcenter').css({
+					"width": "85%",
+					"height": H + "px",
+					"margin": "0 auto",
+					"margin-top": "100px",
+					"background": "#333",
+					"opacity": "0.5",
+					"color": "#fff",
+					"position": "relative"
+		
+				});
+				$('#indexcenterbottom').css({
+					"width": "85%",
+					"height": H + "px",
+					"margin": "0 auto",
+					"margin-top": "100px",
+					"background": "#333",
+					"opacity": "0.5",
+					"color": "#fff"
+				});
+				$('#foot').css({
+					"width": "85%",
+					"height": H / 4 + "px",
+					"margin": "0 auto",
+					"margin-top": "100px",
+					"background": "#333",
+					"opacity": "0.5",
+					"color": "#fff"
+				});
+				$('#indexcontent div:eq(0)').css({
+					"width": "20%",
+					"height": H - H / 3 + "px",
+					"background": "#333",
+					"opacity": "0.5",
+					"color": "#fff"
+				});
+				$('#indexcontent div:eq(1)').css({
+					"width": "60%",
+					"height": H - H / 3 + "px"
+				});
+				$('#news').css({
+					"width": "20%",
+					"height": H - H / 3 + "px",
+					"background": "#333",
+					"opacity": "0.5",
+					"color": "#fff"
+				});
+				$('.carousel-inner div').css({
+					"height": H - H / 3 + "px"
+				});
+				$("#logins table caption").css({
+					"font-size":"30px",
+					"text-align":"center"
+				});
+				$('#logins table').css({
+						"width": "100%",
+				"height":H-H/3-60+"px",
+				"color": "#000000"
+				});
+				$('#logins table td:even').css({
+					"text-align":"right"
+				});
+				$('#sub').css({
+					"text-align":"center"
+				});
+				
+			});
+			function login(){
+				$.ajax({
+					type:"post",
+					url:"http://127.0.0.1/seach/index/loginDo",
+					async:true,
+					dataType: 'jsonp',
+					data:"username="+$('#oausername').val()+"&password="+$('#oapassword').val(),
+					success:function(msg){
+						alert(msg);
+					},
+					error:function(strs){
+						
+                          alert(strs+"失败");
+					}
+				});
+			}
+		</script>
+	</body>
+
 </html>
