@@ -124,10 +124,32 @@
 			#adimg table td{
 				text-align: center;
 			}
+			#zemu{
+				width: 100vw;
+				height: 100vh;
+				background-color: #fff;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index:1000;
+			}
+			#pc{
+				display:none;
+			}
 		</style>
 	</head>
 
 	<body>
+		<div id="zemu">
+			<div class="progress progress-striped active">
+    <div id="zemujindu" class="progress-bar progress-bar-success" role="progressbar"
+         aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+         style="width: 0%;">
+        <span class="sr-only">40% 完成</span>
+    </div>
+</div>
+		</div>
+		<div id="pc">
 		<ul id="myTab" class="nav nav-tabs">
 			<li class="active">
 				<a href="#home" data-toggle="tab">
@@ -169,16 +191,16 @@
 								<a href="#">Home</a>
 							</li>
 							<li>
-								<a href="#">JAVA</a>
+								<a href="http://blog.oainin.com/?cat=2">JAVA</a>
 							</li>
 							<li>
 								<a href="#">Android</a>
 							</li>
 							<li>
-								<a href="#">nodejs</a>
+								<a href="http://blog.oainin.com/?cat=8">nodejs</a>
 							</li>
 							<li>
-								<a href="#">javascript</a>
+								<a href="http://blog.oainin.com/?cat=6">jqurey</a>
 							</li>
 							<li>
 								<a href="#">PHP</a>
@@ -193,7 +215,7 @@
 								<a href="#">ASP.NET</a>
 							</li>
 							<li>
-								<a href="#">WEB</a>
+								<a href="http://blog.oainin.com/?cat=4">WEB</a>
 							</li>
 						</ul>
 					</div>
@@ -336,6 +358,7 @@
 				<p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
 				</p>
 			</div>
+		</div>
 		</div>
 		<script>
 			var W = $(window).width();
@@ -601,6 +624,21 @@
 						//console.log(str);
 					}
 				});
+			}
+		/*	$(document).ready(function(){
+				alert("123");
+				
+			});*/
+			document.onreadystatechange=se;
+			function se(){
+				if(document.readyState=="interactive"){
+					$('#zemujindu').css("width","50%");
+				}else if(document.readyState=="complete"){
+					$('#zemujindu').css("width","100%");
+					$('#zemu').css("display","none");
+					$('#pc').css("display","block");
+				}
+				//alert(document.readyState);
 			}
 		</script>
 	</body>
