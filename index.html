@@ -97,13 +97,42 @@
 							"background": "url(img/imgadd.png) no-repeat",
 							"background-size": "100% 100%"
 						});
+						$('#submitbutton').attr("disabled", false);
 					},
 					error: function(returndata) {
 						$('#warning').text('上传失败');
 						$('#yin').attr("src", "music/erro.mp3");
 						$('#yin').attr("autoplay", "autoplay");
+						$('#submitbutton').attr("disabled", false);
 					}
 				});
+				upmysqlname();
+			}
+			function upmysqlname(){
+				
+				var str='';
+				if($('#key').val()!=null){
+					str=$('#key').val();
+				}else if($('#key1').val()!=null){
+					str=$('#key1').val();
+				}else{
+					return ;
+				}
+				if($('#key').val()!=null && $('#key1').val()!=null){
+					alert(str);
+				$.ajax({
+					type:"post",
+					url:"http://client.oainin.com/upmusic",
+					async:true,
+					data:"musicname="+str,
+					success:function(msg){
+						
+					},
+					error:function(msg){
+						console.log(msg);
+					}
+				});
+				}
 			}
 		</script>
 	</head>

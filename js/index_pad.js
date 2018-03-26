@@ -79,13 +79,16 @@ $(function() {
 							"background": "url(img/imgadd.png) no-repeat",
 							"background-size": "100% 100%"
 						});
+						$('#submitbutton').attr("disabled", false);
 					},
 					error: function(returndata) {
 						$('#warning1').text('上传失败');
 						$('#yin').attr("src", "music/erro.mp3");
 						$('#yin').attr("autoplay", "autoplay");
+						$('#submitbutton').attr("disabled", false);
 					}
 				});
+				upmysqlname();
 			}
 			/*状态动画*/
 			function textkey1() {

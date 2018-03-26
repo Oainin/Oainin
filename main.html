@@ -97,13 +97,32 @@
 			#adc button {
 				margin-left: 9px;
 				outline: none;
-			
 			}
 			
 			#loading {
 				width: 100%;
 				height: 5px;
 				background-color: #fff;
+				margin-top: 10px;
+			}
+			#musclistall{
+				overflow: auto;
+			}
+			
+			#musclistall p {
+				text-align: center;
+				cursor: pointer;
+			}
+			.songname{
+				overflow: auto;
+			}
+			#adimg table{
+				width: 100%;
+				height: auto;
+			margin-top: 10px ;
+			}
+			#adimg table td{
+				text-align: center;
 			}
 		</style>
 	</head>
@@ -150,31 +169,31 @@
 								<a href="#">Home</a>
 							</li>
 							<li>
-								<a href="#">SVN</a>
+								<a href="#">JAVA</a>
 							</li>
 							<li>
-								<a href="#">iOS</a>
+								<a href="#">Android</a>
 							</li>
 							<li>
-								<a href="#">VB.Net</a>
+								<a href="#">nodejs</a>
 							</li>
 							<li>
-								<a href="#">Java</a>
-							</li>
-							<li>
-								<a href="#">PHP</a>
+								<a href="#">javascript</a>
 							</li>
 							<li>
 								<a href="#">PHP</a>
 							</li>
 							<li>
-								<a href="#">PHP</a>
+								<a href="#">C#.NET</a>
 							</li>
 							<li>
-								<a href="#">PHP</a>
+								<a href="#">C</a>
 							</li>
 							<li>
-								<a href="#">PHP</a>
+								<a href="#">ASP.NET</a>
+							</li>
+							<li>
+								<a href="#">WEB</a>
 							</li>
 						</ul>
 					</div>
@@ -210,7 +229,13 @@
 					</div>
 					<div id="news">
 						<div id="adimg">
-							<img src="img/Oainin.png" class="img-thumbnail" /><span>心悦</span>
+							<table >
+								<tr>
+									<td width="40%"><img src="img/Oainin.png" style="width: 80px;height: 80px;" class="img-thumbnail" /></td>
+									<td width="60%"><marquee class="songname" scrollamount="3">Oainin音乐</marquee></td>
+								</tr>
+							</table>
+							
 						</div>
 						<div id="loading" class="progress progress-striped active">
 							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;" id="loading_load">
@@ -228,7 +253,7 @@
   <span class="glyphicon glyphicon-cloud-download"></span>
 </button>
 						</div>
-
+						<div id="musclistall"></div>
 					</div>
 				</div>
 				<div id="headerbottom">
@@ -452,7 +477,11 @@
 				$('#news img').css({
 					"margin": "5% 5%"
 				});
-				
+                $('#musclistall').css({
+                	"height":H - H / 3-175+"px",
+                	"width": "100%",
+				"margin-top": "10px"
+                });
 				s.src = musicpath;
 
 				$('#play').click(function() {
@@ -481,6 +510,13 @@
 					s.currentTime = 0;
 				});
 				musiclist();
+				seachmusic();
+				$('#uploadmusic').click(function() {
+					window.location.href = "http://oainin.com/Oainin";
+				});
+				$('#downloadmusic').click(function() {
+					window.location.href = musicpath;
+				});
 			});
 
 			function login() {
@@ -520,13 +556,49 @@
 					}
 				});
 			}
-			function musiclist(){
+
+			function musiclist() {
 				$.ajax({
-					type:"post",
-					url:"http://client.oainin.com/musiclist",
-					async:true,
-					success:function(str){
+					type: "post",
+					url: "http://client.oainin.com/musiclist",
+					async: true,
+					success: function(str) {
 						console.log(str);
+					}
+				});
+			}
+
+			function seachmusic() {
+				$.ajax({
+					type: "post",
+					url: "http://client.oainin.com/seachmusic",
+					async: true,
+					success: function(str) {
+						str = JSON.parse(str);
+						for(var x = 0; x < str.length; x++) {
+							$('#musclistall').html($('#musclistall').html() + "<p>" + str[x].musicname + "</p>");
+							$('#musclistall').children('p').click(function() {
+								musicpath = '';
+								musicpath = "http://stroage.oainin.com/" + $(this).text();
+								s.src = musicpath;
+								
+								s.play();
+								$('.songname').text('');
+								$('.songname').text($(this).text());
+								$('#play').attr("class", "glyphicon glyphicon-pause");
+								setInterval(function() {
+									var sss = s.duration;
+								var num = sss / 100;
+									var ss = s.currentTime;
+									$('#loading_load').css({
+										"width": ss / num + "%"
+									});
+								}, 1000);
+							});
+						}
+					},
+					error: function(str) {
+						//console.log(str);
 					}
 				});
 			}
