@@ -231,7 +231,7 @@
 					<div id="indexcontent">
 						<div id="navlefttop">
 							<ul class="nav nav-pills nav-stacked">
-								<li >
+								<li>
 									<a href="#">Home</a>
 								</li>
 								<li>
@@ -341,13 +341,13 @@
 									</ul>
 								</td>
 								<td width="50%" id="notice">
-									<div class="panel panel-success" style="width: 70%;margin: 0 auto;">
+									<div class="panel panel-default" style="width: 70%;margin: 0 auto;">
 										<div class="panel-heading">
 											<h3 class="panel-title">站长信息</h3>
 										</div>
 										<div class="panel-body" style="color: #000000;">
-											站长邮箱：<a href="Mailto:in@oainin.com?CC=in@oainin.com&BCC=in@oainin.com&Subject=来自Oainin主网页的问题&Body=请在这里输入你遇到的问题">in@oainin.com</a><br /><br />
-											联系电话：18582461007
+											站长邮箱：
+											<a href="Mailto:in@oainin.com?CC=in@oainin.com&BCC=in@oainin.com&Subject=来自Oainin主网页的问题&Body=请在这里输入你遇到的问题">in@oainin.com</a><br /><br /> 联系电话：18582461007
 										</div>
 									</div>
 								</td>
@@ -653,7 +653,7 @@
 				$.ajax({
 					type: "get",
 					url: "https://oaininamos.localtunnel.me/loginDo",
-					async: true,
+					async: false,
 					data: "username=" + $('#oausername').val() + "&password=" + $('#oapassword').val(),
 					success: function(msg) {
 						//alert(msg + "dddd");
@@ -661,8 +661,8 @@
 							$('#logins').slideUp();
 							$('#oacontent').slideDown();
 
-						} else{
-							
+						} else {
+
 						}
 					},
 					error: function(a) {
@@ -676,13 +676,14 @@
 				$.ajax({
 					type: "get",
 					url: "https://oaininamos.localtunnel.me/loginOver",
-					async: true,
+					async: false,
 					success: function(msg) {
-						if(msg){
+						console.log(msg);
+						if(msg) {
 							$('#logins').slideUp();
 							$('#oacontent').slideDown();
 
-						}else{
+						} else {
 							$('#logins').slideDown();
 							$('#oacontent').slideUp();
 
