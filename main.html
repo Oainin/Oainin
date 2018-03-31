@@ -48,8 +48,7 @@
 				width: 500px;
 				height: 300px;
 				border: 1px solid;
-				filter: alpha(opacity=100);
-				opacity: 1;
+				opacity: 0.5;
 			}
 			
 			#logins table {
@@ -232,7 +231,7 @@
 					<div id="indexcontent">
 						<div id="navlefttop">
 							<ul class="nav nav-pills nav-stacked">
-								<li class="active">
+								<li >
 									<a href="#">Home</a>
 								</li>
 								<li>
@@ -480,7 +479,7 @@
 					"height": H + "px",
 					"width": W + "px",
 					"background": "#333",
-					"opacity": "0.5",
+					"background-color": "rgba(0,0,0,0.4)",
 					"color": "#fff",
 					"position": "relative"
 				});
@@ -501,7 +500,7 @@
 
 					"margin": "0 auto",
 					"background": "#333",
-					"opacity": "0.5",
+					"background-color": "rgba(0,0,0,0.4)",
 					"color": "#fff"
 				});
 				$('#logins').css({
@@ -531,7 +530,7 @@
 					"height": H + "px",
 					"margin": "0 auto",
 					"background": "#333",
-					"opacity": "0.5",
+					"background-color": "rgba(0,0,0,0.4)",
 					"color": "#fff",
 					"position": "relative"
 
@@ -546,7 +545,7 @@
 					"height": H + "px",
 					"margin": "0 auto",
 					"background": "#333",
-					"opacity": "0.5",
+					"background-color": "rgba(0,0,0,0.4)",
 					"color": "#fff"
 				});
 				$('#footdivs').css({
@@ -559,7 +558,7 @@
 					"height": H / 4 + "px",
 					"margin": "0 auto",
 					"background": "#333",
-					"opacity": "0.5",
+					"background-color": "rgba(0,0,0,0.4)",
 					"color": "#fff"
 				});
 				$('#indexcontent div:eq(0)').css({
@@ -602,7 +601,7 @@
 					"width": "100%",
 					"height": H - H / 3 + "px",
 					"background": "#333",
-					"opacity": "0.5",
+					"background-color": "rgba(0,0,0,0.4)",
 					"color": "#fff"
 				});
 				$('#news img').css({
@@ -657,15 +656,14 @@
 					async: true,
 					data: "username=" + $('#oausername').val() + "&password=" + $('#oapassword').val(),
 					success: function(msg) {
-						alert(msg + "dddd");
+						//alert(msg + "dddd");
 						if(msg != null) {
 							$('#logins').slideUp();
 							$('#oacontent').slideDown();
 
-						} else {
-
+						} else{
+							
 						}
-						//console.log(JSON.parse(msg).flag);
 					},
 					error: function(a) {
 						alert(a + "登录报错");
@@ -680,10 +678,18 @@
 					url: "https://oaininamos.localtunnel.me/loginOver",
 					async: true,
 					success: function(msg) {
-						alert(msg);
+						if(msg){
+							$('#logins').slideUp();
+							$('#oacontent').slideDown();
+
+						}else{
+							$('#logins').slideDown();
+							$('#oacontent').slideUp();
+
+						}
 					},
 					error: function(a) {
-						alert(a);
+						alert("注册报错");
 					}
 				});
 			}
