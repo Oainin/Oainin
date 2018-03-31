@@ -68,7 +68,12 @@
 				animation-duration: 10s;
 			}
 			
-			#logos img {
+			#logoxuann {
+				margin: 0 auto;
+				width: 100px;
+			}
+			
+			#logoxuann img {
 				animation: t 5s;
 				animation-iteration-count: infinite;
 				animation-duration: 5s;
@@ -321,17 +326,38 @@
 						</div>
 					</div>
 					<div id="headerbottom">
-						<ul class="media-list">
-							<li class="media">
-								<a class="media-left" href="#">
-									<img class="media-object" src="http://stroage.oainin.com/Oainin.png" alt="通用的占位符图像">
-								</a>
-								<div class="media-body">
-									<h4 class="media-heading">Oainin网站</h4>
-									<p>Oainin网站为杨正龙开发，请勿随意挖掘本网站内容</p>
-								</div>
-							</li>
-						</ul>
+						<table>
+							<tr>
+								<td width="50%">
+									<ul class="media-list">
+										<li class="media">
+											<a class="media-left" href="#">
+												<img class="media-object" src="http://stroage.oainin.com/Oainin.png" alt="通用的占位符图像">
+											</a>
+											<div class="media-body">
+												<h4 class="media-heading">Oainin网站</h4>
+												<p>Oainin网站为杨正龙开发，请勿随意挖掘本网站内容</p>
+											</div>
+										</li>
+									</ul>
+								</td>
+								<td width="50%" id="notice">
+									<div class="panel panel-success" style="width: 70%;margin: 0 auto;">
+										<div class="panel-heading">
+											<h3 class="panel-title">站长信息</h3>
+										</div>
+										<div class="panel-body" style="color: #000000;">
+											站长邮箱：<a href="Mailto:in@oainin.com?CC=in@oainin.com&BCC=in@oainin.com&Subject=来自Oainin主网页的问题&Body=请在这里输入你遇到的问题">in@oainin.com</a><br /><br />
+											联系电话：18582461007
+										</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+
+					</div>
+					<div id="headerdivs">
+						<div id="logoxuann"><img src="img/O.png"><img src="img/AI.png"><img src="img/you.png"></div>
 					</div>
 					<div id="indexcenter">
 						<div id="videos">
@@ -341,10 +367,15 @@
 						</div>
 
 					</div>
+					<div id="centerdivs">
+						<div id="logoxuann"><img src="img/O.png"><img src="img/AI.png"><img src="img/you.png"></div>
+					</div>
 					<div id="indexcenterbottom">
 
 					</div>
-
+					<div id="footdivs">
+						<div id="logoxuann"><img src="img/O.png"><img src="img/AI.png"><img src="img/you.png"></div>
+					</div>
 					<div id="foot">
 						<p style="color: #fff; text-align: center; padding-top: 30px; line-height: 24px;">
 							本网站内容属于Oainin.com&copy;Copyright版权所有，禁止转载，谢谢！2017-2018<br>
@@ -426,6 +457,7 @@
 			var H = $(window).height();
 			var s = document.createElement('audio');
 			var songloading = 0;
+			var st = new Date();
 			var musicpath = 'http://stroage.oainin.com/%E4%B9%B0%E8%BE%A3%E6%A4%92%E4%B9%9F%E7%94%A8%E5%88%B8%20-%20%E8%B5%B7%E9%A3%8E%E4%BA%86.mp3';
 			$(function() {
 				$('#play').attr("class", "glyphicon glyphicon-play-circle");
@@ -466,7 +498,7 @@
 				});
 				$('#headerbottom').css({
 					"width": W - W / 12 + "px",
-					"height": H / 3 + "px",
+
 					"margin": "0 auto",
 					"background": "#333",
 					"opacity": "0.5",
@@ -489,32 +521,43 @@
 					"background": "#fff",
 					"display": "none"
 				});
-
+				$('#headerdivs').css({
+					"width": W - W / 12 + "px",
+					"margin": "0 auto",
+					"height": "100px"
+				});
 				$('#indexcenter').css({
 					"width": W - W / 12 + "px",
 					"height": H + "px",
 					"margin": "0 auto",
-					"margin-top": "100px",
 					"background": "#333",
 					"opacity": "0.5",
 					"color": "#fff",
 					"position": "relative"
 
 				});
+				$('#centerdivs').css({
+					"width": W - W / 12 + "px",
+					"margin": "0 auto",
+					"height": "100px"
+				});
 				$('#indexcenterbottom').css({
 					"width": W - W / 12 + "px",
 					"height": H + "px",
 					"margin": "0 auto",
-					"margin-top": "100px",
 					"background": "#333",
 					"opacity": "0.5",
 					"color": "#fff"
+				});
+				$('#footdivs').css({
+					"width": W - W / 12 + "px",
+					"margin": "0 auto",
+					"height": "100px"
 				});
 				$('#foot').css({
 					"width": W - W / 12 + "px",
 					"height": H / 4 + "px",
 					"margin": "0 auto",
-					"margin-top": "100px",
 					"background": "#333",
 					"opacity": "0.5",
 					"color": "#fff"
@@ -679,7 +722,7 @@
 											songloading = 0;
 											musicpath = "http://stroage.oainin.com/" + $('#musclistall p:eq(' + songloading + ')').text();
 											s.src = musicpath;
-											
+
 											$('.songname').text($('#musclistall p:eq(' + songloading + ')').text());
 											s.play();
 										} else {
@@ -688,10 +731,11 @@
 											s.src = musicpath;
 											$('.songname').text($('#musclistall p:eq(' + songloading + ')').text());
 											s.play();
-										
+
 										}
 									}
 								}, 1000);
+
 								s.play();
 								$('.songname').text('');
 								$('.songname').text($(this).text());
@@ -709,10 +753,13 @@
 						}
 					},
 					error: function(str) {
-						//console.log(str);
+						//<div id="logoxuann"><img src="img/O.png"><img src="img/AI.png"><img src="img/you.png"></div>
+						$('#notice').html('');
+						$('#notice').html('<div class="alert alert-warning alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>警告！音乐服务器停止运行，请稍后！</div>');;
 					}
 				});
 			}
+
 			document.onreadystatechange = se;
 
 			function se() {
