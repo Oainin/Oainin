@@ -652,7 +652,7 @@
 			function login() {
 				$.ajax({
 					type: "get",
-					url: "https://oaininamos.localtunnel.me/loginDo",
+					url: "https://oaininamosoaininamos.localtunnel.me/loginDo",
 					async: false,
 					data: "username=" + $('#oausername').val() + "&password=" + $('#oapassword').val(),
 					success: function(msg) {
@@ -675,7 +675,7 @@
 			function loginover() {
 				$.ajax({
 					type: "get",
-					url: "https://oaininamos.localtunnel.me/loginOver",
+					url: "https://oaininamosoaininamos.localtunnel.me/loginOver",
 					async: false,
 					success: function(msg) {
 						console.log(msg);
@@ -698,7 +698,7 @@
 			function musiclist() {
 				$.ajax({
 					type: "post",
-					url: "https://oaininamos.localtunnel.me/musiclist",
+					url: "https://oaininamosoaininamos.localtunnel.me/musiclist",
 					async: true,
 					success: function(str) {
 						console.log(str);
@@ -709,7 +709,7 @@
 			function seachmusic() {
 				$.ajax({
 					type: "post",
-					url: "https://oaininamos.localtunnel.me/seachmusic",
+					url: "https://oaininamosoaininamos.localtunnel.me/seachmusic",
 					async: true,
 					success: function(str) {
 						str = JSON.parse(str);
