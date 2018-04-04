@@ -1,236 +1,783 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html>
 
 	<head>
-		<meta charset="UTF-8">
-		<title>Oainin上传云端</title>
-		<link rel="shortcut icon" href="img/Oainin.png" type="image/png" />
-		<link href="css/index.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-		<script type="text/javascript" src="js/index_pad.js"></script>
-		<script type="text/javascript">
-			var H = $(window).height();
-			var W = $(window).width();
-			$(function() {
-				if($('#file').val() == '' && $('.name').val() == '') {
-					$('#submitbutton').attr("disabled", true);
-				} else {
-					$('#submitbutton').attr("disabled", false);
-				}
-				var num = 0;
-				setInterval(function() {
-					$(".colors:eq(" + num + ")").css("display", "block");
-					num++;
-					if(num > 7) {
-						num = 0;
-						$(".colors").css("display", "none");
-					}
-				}, 1000);
-
-			});
-
-			function onc() {
-				if($('#file').val() == '' && $('.name').val() == '') {
-					$('#submitbutton').attr("disabled", true);
-					$('.colors').css({
-						"background": "#f00"
-					});
-				} else {
-					$('#submitbutton').attr("disabled", false);
-					$('.colors').css({
-						"background": "#0f0"
-					});
-				}
-				var files = $('#file').val();
-				$('.name').val(files.substring(files.lastIndexOf('\\') + 1));
-				$('#key').val($('.name').val());
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+		<title>Oainin哦爱您</title>
+		<link rel="shortcut icon" href="img/Oainin.png" type=" image/png" />
+		<!-- 新 Bootstrap 核心 CSS 文件 -->
+		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<!-- 可选的Bootstrap主题文件（一般不使用） -->
+		<!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>-->
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<!--	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>-->
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
 			}
-			/*实时图片浏览*/
-			function showPreview(source) {
-				onc();
-				var file = source.files[0];
-				if(window.FileReader) {
-					var fr = new FileReader();
-					console.log(fr);
-					fr.onloadend = function(e) {
-						$('#filediv').css({
-							"background": "url(" + e.target.result + ")",
-							"background-size": "100% 100%"
-						});
-					};
-					fr.readAsDataURL(file);
-				}
+			
+			#content {
+				width: 80%;
 			}
-			/*状态动画*/
-			function textkey() {
-				$('#key').val($('.name').val());
-				if($('.name').val() == '' || $('#file').val() == '') {
-					$('#submitbutton').attr("disabled", true);
-					$('.colors').css({
-						"background": "#f00"
-					});
-				} else {
-					$('#submitbutton').attr("disabled", false);
-					$('.colors').css({
-						"background": "#0f0"
-					});
-				}
+			
+			#indexcontent div {
+				float: left;
 			}
-			/*上传ajax*/
-			function up() {
-				var f = new FormData($('#forms')[0]);
-				$.ajax({
-					type: "post",
-					url: "https://upload-z2.qiniup.com/",
-					data: f,
-					async: false,
-					cache: false,
-					contentType: false,
-					processData: false,
-					success: function(returndata) {
-						$('#warning').text('上传成功');
-						$('#yin').attr("src", "music/ok.mp3");
-						$('#yin').attr("autoplay", "autoplay");
-						$('#file').val('');
-						$('.name').val('');
-						$('#filediv').css({
-							"background": "url(img/imgadd.png) no-repeat",
-							"background-size": "100% 100%"
-						});
-						$('#submitbutton').attr("disabled", false);
-					},
-					error: function(returndata) {
-						$('#warning').text('上传失败');
-						$('#yin').attr("src", "music/erro.mp3");
-						$('#yin').attr("autoplay", "autoplay");
-						$('#submitbutton').attr("disabled", false);
-					}
-				});
-				upmysqlname();
+			
+			.media-list {
+				padding-top: 50px;
 			}
-			function upmysqlname(){
-				
-				var str='';
-				if($('#key').val()!=null){
-					str=$('#key').val();
-				}else if($('#key1').val()!=null){
-					str=$('#key1').val();
-				}else{
-					return ;
+			
+			#headerbottom img {
+				margin-left: 90px;
+			}
+			
+			.media-body {
+				padding-top: 30px;
+			}
+			
+			#videos {
+				position: absolute;
+				top: 50px;
+				right: 70px;
+				width: 500px;
+				height: 300px;
+				border: 1px solid;
+				opacity: 0.5;
+			}
+			
+			#logins table {
+				width: 100%;
+				height: auto;
+				color: #000000;
+			}
+			
+			#logins table td {
+				text-align: center;
+			}
+			
+			.media-object {
+				animation: t 5s;
+				animation-iteration-count: infinite;
+				animation-duration: 10s;
+			}
+			
+			#logoxuann {
+				margin: 0 auto;
+				width: 100px;
+			}
+			
+			#logoxuann img {
+				animation: t 5s;
+				animation-iteration-count: infinite;
+				animation-duration: 5s;
+			}
+			
+			@keyframes t {
+				0% {
+					transform: rotateY(0deg);
 				}
-				if($('#key').val()!=null && $('#key1').val()!=null){
-				$.ajax({
-					type:"post",
-					url:"https://oaininamos.localtunnel.me/upmusic",
-					async:true,
-					data:"musicname="+str,
-					success:function(msg){
-						
-					},
-					error:function(msg){
-						console.log(msg);
-					}
-				});
+				25% {
+					transform: rotateY(90deg);
+				}
+				50% {
+					transform: rotateY(180deg);
+				}
+				75% {
+					transform: rotateY(270deg);
+				}
+				100% {
+					transform: rotateY(360deg);
 				}
 			}
-		</script>
+			
+			#adimg {
+				width: 100%;
+			}
+			
+			#adc {
+				width: 100%;
+			}
+			
+			#adc button {
+				margin-left: 9px;
+				outline: none;
+			}
+			
+			#loading {
+				width: 100%;
+				height: 5px;
+				background-color: #fff;
+				margin-top: 10px;
+			}
+			
+			#musclistall {
+				overflow: auto;
+			}
+			
+			#musclistall p {
+				text-align: center;
+				cursor: pointer;
+			}
+			
+			.songname {
+				overflow: auto;
+			}
+			
+			#adimg table {
+				width: 100%;
+				height: auto;
+				margin-top: 10px;
+			}
+			
+			#adimg table td {
+				text-align: center;
+			}
+			
+			#zemu {
+				width: 100vw;
+				height: 100vh;
+				background-color: #fff;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 1000;
+			}
+			
+			#pc {
+				display: none;
+			}
+			
+			#welcome {
+				width: 40vw;
+				height: 30vh;
+				margin: 20vh auto;
+				text-align: center;
+			}
+			
+			#welcome p img {
+				text-align: center;
+				margin: 20px auto;
+			}
+			
+			#indexcenterbottom table {
+				width: 100%;
+				height: 100%;
+			}
+			
+			#indexcenterbottom table td {
+				text-align: center;
+			}
+			
+			.flipbook {
+				margin: 0 auto;
+			}
+		</style>
 	</head>
 
 	<body>
-		<div id="pc">
-			<div id="Update">
-				<h2>Oainin七牛云上传存储中心</h2>
-				<form id="forms">
-					<input name="token" type="hidden" value="NKaS_9PlBCc4vgx0ZQSH5_mkSAotYIi589VJIQBR:wTKXAs5qXTcvsR4yE5tifUJfp4g=:eyJzY29wZSI6Im9haW5pbiIsImRlYWRsaW5lIjo5OTk5OTk5OTk5fQ==">
-					<input name="key" id="key" type="hidden">
-					<table>
-						<tr>
-							<td rowspan="3" width="30%">
-								<div id="filediv"><input name="file" type="file" id="file" onchange="showPreview(this)" /></div>
-							</td>
-							<td width="10%"></td>
-							<td width="60%"></td>
-						</tr>
-						<tr>
+		<div id="zemu">
+			<div class="progress progress-striped active">
+				<div id="zemujindu" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+					<span class="sr-only">加载中。。。(第一次加载)</span>
+				</div>
 
-							<td>文件名：</td>
-							<td><input class="name" type="text" placeholder="输入你的文件名" onchange="textkey()"></td>
-						</tr>
-						<tr>
-							<td>检测：</td>
-							<td>
-								<div class="colors"></div>
-								<div class="colors"></div>
-								<div class="colors"></div>
-								<div class="colors"></div>
-								<div class="colors"></div>
-								<div class="colors"></div>
-								<div class="colors"></div>
-							</td>
-						</tr>
-						<tr>
-							<td>请点击图标准备上传检测</td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td id="warning"></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>
-								<audio id="yin"></audio>
-							</td>
-							<td colspan="2"><input type="button" id="submitbutton" value="提交" onclick="up()" /></td>
-
-						</tr>
-					</table>
-
-				</form>
+			</div>
+			<div id="welcome">
+				<p>Oainin网页加载中稍后</p>
+				<p><img class="media-object" src="img/Oainin.png" alt="通用的占位符图像"></p>
 			</div>
 		</div>
-		<div id="pad">
-			<form id="forms" class="forms">
-				<table border="1">
-					<input name="token" type="hidden" value="NKaS_9PlBCc4vgx0ZQSH5_mkSAotYIi589VJIQBR:IWYoMk20ChYqizVLmagSUAlzqfk=:eyJzY29wZSI6Im9haW5pbiIsImRlYWRsaW5lIjoyNTIxMTMyMzkxfQ==">
-					<input name="key" id="key1" class="key1" type="hidden">
-					<tr>
-						<td id="biao" colspan="2"><img src="http://stroage.oainin.com/Oainin.png" />Oainin上传七牛云</td>
-					</tr>
-					<tr>
-						<td>头像浏览</td>
-						<td>
-							<div id="filediv1"><input name="file" type="file" id="file1" onchange="showPreview1(this)" /></div>
-						</td>
-					</tr>
-					<tr>
-						<td>文件名</td>
-						<td><input class="name1" type="text" placeholder="输入你的文件名" onchange="textkey1()"></td>
-					</tr>
-					<tr>
-						<td>上传状态</td>
-						<td>
-							<div class="colors1"></div>
-							<div class="colors1"></div>
-							<div class="colors1"></div>
-							<div class="colors1"></div>
-							<div class="colors1"></div>
-							<div class="colors1"></div>
-							<div class="colors1"></div>
-						</td>
-					</tr>
-					<tr>
-						<td>状态</td>
-						<td id="warning1"></td>
-					</tr>
-					<tr>
-						<td>上传选项</td>
-						<td><input type="button" id="submitbutton1" value="提交" onclick="up1()" /></td>
-					</tr>
-				</table>
-			</form>
+		<div id="pc">
+			<ul id="myTab" class="nav nav-tabs">
+				<li class="active">
+					<a href="#home" data-toggle="tab">
+						Oainin主页</a>
+				</li>
+				<li>
+					<a href="#oa" data-toggle="tab" onclick="loginover()">OA管理系统</a>
+				</li>
+				<li class="dropdown">
+					<a href="#" data-toggle="dropdown" id="myTabDrop2" class="dropdown-toggle">博客<b class="caret"></b></a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop2">
+						<li>
+							<a href="#blog" tabindex="-1" data-toggle="tab">访问博客主页</a>
+						</li>
+						<li>
+							<a href="#bloglogin" tabindex="-1" data-toggle="tab">bloglogin</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">
+						关于我们<b class="caret"></b></a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+						<li>
+							<a href="#about" tabindex="-1" data-toggle="tab">关于我们</a>
+						</li>
+						<li>
+							<a href="#contactus" tabindex="-1" data-toggle="tab">联系我们</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade in active" id="home">
+					<div id="indexcontent">
+						<div id="navlefttop">
+							<ul class="nav nav-pills nav-stacked">
+								<li>
+									<a href="#">Home</a>
+								</li>
+								<li>
+									<a href="http://blog.oainin.com/?cat=2">JAVA</a>
+								</li>
+								<li>
+									<a href="#">Android</a>
+								</li>
+								<li>
+									<a href="http://blog.oainin.com/?cat=8">nodejs</a>
+								</li>
+								<li>
+									<a href="http://blog.oainin.com/?cat=6">jqurey</a>
+								</li>
+								<li>
+									<a href="#">PHP</a>
+								</li>
+								<li>
+									<a href="#">C#.NET</a>
+								</li>
+								<li>
+									<a href="#">C</a>
+								</li>
+								<li>
+									<a href="#">ASP.NET</a>
+								</li>
+								<li>
+									<a href="http://blog.oainin.com/?cat=4">WEB</a>
+								</li>
+							</ul>
+						</div>
+						<div>
+							<div id="myCarousel" class="carousel slide">
+								<!-- 轮播（Carousel）指标 -->
+								<ol class="carousel-indicators">
+									<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+									<li data-target="#myCarousel" data-slide-to="1"></li>
+									<li data-target="#myCarousel" data-slide-to="2"></li>
+								</ol>
+								<!-- 轮播（Carousel）项目 -->
+								<div class="carousel-inner">
+									<div class="item active">
+										<img src="http://stroage.oainin.com/3dOainin.png" alt="First slide">
+										<div class="carousel-caption">Oainin</div>
+									</div>
+									<div class="item">
+										<img src="http://stroage.oainin.com/3dOainin.png" alt="Second slide">
+										<div class="carousel-caption">Oainin</div>
+									</div>
+									<div class="item">
+										<img src="http://stroage.oainin.com/3dOainin.png" alt="Third slide">
+										<div class="carousel-caption">Oainin</div>
+									</div>
+								</div>
+								<!-- 轮播（Carousel）导航 -->
+								<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;
+								</a>
+								<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;
+								</a>
+							</div>
+						</div>
+						<div id="news">
+							<div id="adimg">
+								<table>
+									<tr>
+										<td width="40%"><img src="http://stroage.oainin.com/Oainin.png" style="width: 80px;height: 80px;" class="img-thumbnail" /></td>
+										<td width="60%">
+											<marquee class="songname" scrollamount="3">Oainin音乐</marquee>
+										</td>
+									</tr>
+								</table>
+
+							</div>
+							<div id="loading" class="progress progress-striped active">
+								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;" id="loading_load">
+									<span class="sr-only">40% 完成</span>
+								</div>
+							</div>
+							<div id="adc">
+								<button type="button" class="btn btn-default btn-xs" id="play" style="width:50px;height:30px;">
+  <span class=""></span>
+</button><button type="button" class="btn btn-default btn-xs" id="stop" style="width:50px;height:30px;">
+  <span class="glyphicon glyphicon-stop"></span>
+</button><button type="button" class="btn btn-default btn-xs" id="uploadmusic" style="width:50px;height:30px;">
+  <span class="glyphicon glyphicon-cloud-upload"></span>
+</button><button type="button" class="btn btn-default btn-xs" id="downloadmusic" style="width:50px;height:30px;">
+  <span class="glyphicon glyphicon-cloud-download"></span>
+</button>
+							</div>
+							<div id="musclistall"></div>
+						</div>
+					</div>
+					<div id="headerbottom">
+						<table>
+							<tr>
+								<td width="50%">
+									<ul class="media-list">
+										<li class="media">
+											<a class="media-left" href="#">
+												<img class="media-object" src="http://stroage.oainin.com/Oainin.png" alt="通用的占位符图像">
+											</a>
+											<div class="media-body">
+												<h4 class="media-heading">Oainin网站</h4>
+												<p>Oainin网站为杨正龙开发，请勿随意挖掘本网站内容</p>
+											</div>
+										</li>
+									</ul>
+								</td>
+								<td width="50%" id="notice">
+									<div class="panel panel-default" style="width: 70%;margin: 0 auto;">
+										<div class="panel-heading">
+											<h3 class="panel-title">站长信息</h3>
+										</div>
+										<div class="panel-body" style="color: #000000;">
+											站长邮箱：
+											<a href="Mailto:in@oainin.com?CC=in@oainin.com&BCC=in@oainin.com&Subject=来自Oainin主网页的问题&Body=请在这里输入你遇到的问题">in@oainin.com</a><br /><br /> 联系电话：18582461007
+										</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+
+					</div>
+					<div id="headerdivs">
+						<div id="logoxuann"><img src="img/O.png"><img src="img/AI.png"><img src="img/you.png"></div>
+					</div>
+					<div id="indexcenter">
+						<div id="videos">
+							<video src="" width="100%" height="100%" controls="controls">
+								你的浏览器不支持HTML5
+							</video>
+						</div>
+
+					</div>
+					<div id="centerdivs">
+						<div id="logoxuann"><img src="img/O.png"><img src="img/AI.png"><img src="img/you.png"></div>
+					</div>
+					<div id="indexcenterbottom">
+
+					</div>
+					<div id="footdivs">
+						<div id="logoxuann"><img src="img/O.png"><img src="img/AI.png"><img src="img/you.png"></div>
+					</div>
+					<div id="foot">
+						<p style="color: #fff; text-align: center; padding-top: 30px; line-height: 24px;">
+							本网站内容属于Oainin.com&copy;Copyright版权所有，禁止转载，谢谢！2017-2018<br>
+							<a style="color: #fff;" href='http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51132102000140'><img alt="备案图标" src="img/ba.png">川公网安备 51132102000140号</a><br>
+							<a style="color: #fff;" href="http://www.miitbeian.gov.cn/">蜀ICP备17036264号-2</a>
+						</p>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="oa">
+					<div id="oalogin">
+						<div id="logins">
+							<form class="form-inline" role="form" id="loginoa">
+								<table>
+									<caption>OA登录系统</caption>
+									<tr>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><button type="button" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-user"></span> User
+</button></td>
+										<td>
+											<div class="form-group">
+												<label class="sr-only" for="email">Email 地址</label>
+												<input type="text" class="form-control" placeholder="Enter email" id="oausername">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td><button type="button" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-eye-close"></span>Password
+</button></td>
+										<td>
+											<div class="form-group">
+												<label class="sr-only" for="pass">密码</label>
+												<input type="password" class="form-control" placeholder="Password" id="oapassword">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" id="sub"><button type="button" class="btn btn-default btn-lg" onclick="login()">
+    <span class="glyphicon glyphicon-ok-circle"></span>登录
+</button></td>
+									</tr>
+								</table>
+
+						</div>
+						<div id="oacontent"></div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="blog">
+					<iframe id="blogiframe" width="100%" contenteditable="true" src="http://blog.oainin.com/"></iframe>
+				</div>
+				<div class="tab-pane fade" id="bloglogin">
+					<iframe id="blogiframe1" width="100%" src="http://blog.oainin.com/?page_id=265&redirect_to=http%3A%2F%2Fblog.oainin.com%2F"></iframe>
+				</div>
+				<div class="tab-pane fade" id="about">
+					<div id="about">
+						<h1>
+			<img src="img/Oainin.png" />联系我们
+		</h1>
+						<p style="width: 40%;  padding-top: 30px;margin: 0 auto;line-height: 30px;">
+							网站追求极致，期待你的建议<br> 联系我们的邮件：
+							<a href="Mailto:in@oainin.com?CC=in@oainin.com&BCC=in@oainin.com&Subject=来自Oainin主网页的问题&Body=请在这里输入你遇到的问题">in@oainin.com</a><br> 或者请到我的博客留言
+							<a href="http://www.aimishiyou.top">Amos博客</a><br>
+							<img alt="" src="img/erweima.png" width="80" height="80">
+						</p>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="contactus">
+					联系我们
+
+				</div>
+			</div>
 		</div>
+		<script>
+			var W = $(window).width();
+			var H = $(window).height();
+			var s = document.createElement('audio');
+			var songloading = 0;
+			var st = new Date();
+			var musicpath = 'http://stroage.oainin.com/%E4%B9%B0%E8%BE%A3%E6%A4%92%E4%B9%9F%E7%94%A8%E5%88%B8%20-%20%E8%B5%B7%E9%A3%8E%E4%BA%86.mp3';
+			$(function() {
+				$('#play').attr("class", "glyphicon glyphicon-play-circle");
+				$("[data-toggle='popover']").popover();
+				$("#home").css({
+					"height": "auto",
+					"width": W + "px",
+					"background": "url(http://stroage.oainin.com/535eb53d44c6361e075d23e9c6358c9d.jpg) no-repeat fixed",
+					"background-size": "100% 100%",
+					"background-position": " center",
+				});
+				$("#oa").css({
+					"height": "auto",
+					"width": W + "px",
+					"background": "url(http://stroage.oainin.com/535eb53d44c6361e075d23e9c6358c9d.jpg) no-repeat fixed",
+					"background-size": "100% 100%",
+					"background-position": " center"
+				});
+				$("#oalogin").css({
+					"height": H + "px",
+					"width": W + "px",
+					"background": "#333",
+					"background-color": "rgba(0,0,0,0.4)",
+					"color": "#fff",
+					"position": "relative"
+				});
+				$('#blogiframe').css({
+					"height": H + "px"
+				});
+				$('#blogiframe1').css({
+					"height": H + "px"
+				});
+				$('#indexcontent').css({
+					"width": W - W / 12 + "px",
+					"height": H - H / 3 + 10 + "px",
+					"margin": "0 auto",
+					"padding-top": "10px"
+				});
+				$('#headerbottom').css({
+					"width": W - W / 12 + "px",
+
+					"margin": "0 auto",
+					"background": "#333",
+					"background-color": "rgba(0,0,0,0.4)",
+					"color": "#fff"
+				});
+				$('#logins').css({
+					"width": W / 2 + "px",
+					"height": H - H / 3 + "px",
+					"margin": "0 auto",
+					"background": "#fff",
+					"position": "absolute",
+					"top": "50px",
+					"left": (W - W / 2) / 2 + "px"
+
+				});
+				$('#oacontent').css({
+					"width": W + "px",
+					"height": H + "px",
+					"margin": "0 auto",
+					"background": "#fff",
+					"display": "none"
+				});
+				$('#headerdivs').css({
+					"width": W - W / 12 + "px",
+					"margin": "0 auto",
+					"height": "100px"
+				});
+				$('#indexcenter').css({
+					"width": W - W / 12 + "px",
+					"height": H + "px",
+					"margin": "0 auto",
+					"background": "#333",
+					"background-color": "rgba(0,0,0,0.4)",
+					"color": "#fff",
+					"position": "relative"
+
+				});
+				$('#centerdivs').css({
+					"width": W - W / 12 + "px",
+					"margin": "0 auto",
+					"height": "100px"
+				});
+				$('#indexcenterbottom').css({
+					"width": W - W / 12 + "px",
+					"height": H + "px",
+					"margin": "0 auto",
+					"background": "#333",
+					"background-color": "rgba(0,0,0,0.4)",
+					"color": "#fff"
+				});
+				$('#footdivs').css({
+					"width": W - W / 12 + "px",
+					"margin": "0 auto",
+					"height": "100px"
+				});
+				$('#foot').css({
+					"width": W - W / 12 + "px",
+					"height": H / 4 + "px",
+					"margin": "0 auto",
+					"background": "#333",
+					"background-color": "rgba(0,0,0,0.4)",
+					"color": "#fff"
+				});
+				$('#indexcontent div:eq(0)').css({
+					"width": "20%",
+					"height": H - H / 3 + "px",
+					"background": "#333",
+					"background-color": "rgba(0,0,0,0.5)",
+					"color": "#fff"
+				});
+				$('#indexcontent div:eq(1)').css({
+					"width": "60%",
+					"height": H - H / 3 + "px"
+				});
+				$('#news').css({
+					"width": "20%",
+					"height": H - H / 3 + "px",
+					"background": "#333",
+					"background-color": "rgba(0,0,0,0.4)",
+					"color": "#fff"
+				});
+				$('.carousel-inner div').css({
+					"height": H - H / 3 + "px"
+				});
+				$("#logins table caption").css({
+					"font-size": "30px",
+					"text-align": "center"
+				});
+				$('#logins table').css({
+					"width": "100%",
+					"height": H - H / 3 - 60 + "px",
+					"color": "#000000"
+				});
+				$('#logins table td:even').css({
+					"text-align": "right"
+				});
+				$('#sub').css({
+					"text-align": "center"
+				});
+				$('#navlefttop ul').css({
+					"width": "100%",
+					"height": H - H / 3 + "px",
+					"background": "#333",
+					"background-color": "rgba(0,0,0,0.4)",
+					"color": "#fff"
+				});
+				$('#news img').css({
+					"margin": "5% 5%"
+				});
+				$('#musclistall').css({
+					"height": H - H / 3 - 175 + "px",
+					"width": "100%",
+					"margin-top": "10px"
+				});
+				s.src = musicpath;
+
+				$('#play').click(function() {
+					if(s.paused) {
+						var sss = s.duration;
+						var num = sss / 100;
+
+						s.play();
+						$('#play').attr("class", "glyphicon glyphicon-pause");
+						setInterval(function() {
+							var ss = s.currentTime;
+							$('#loading_load').css({
+								"width": ss / num + "%"
+							});
+
+						}, 1000);
+
+					} else {
+
+						s.pause();
+						$('#play').attr("class", "glyphicon glyphicon-play-circle");
+					}
+				});
+				$('#stop').click(function() {
+					s.pause();
+					s.currentTime = 0;
+				});
+				musiclist();
+				$('#uploadmusic').click(function() {
+					window.location.href = "http://oainin.com/Oainin";
+				});
+				$('#downloadmusic').click(function() {
+					window.location.href = musicpath;
+				});
+			});
+
+			function login() {
+				$.ajax({
+					type: "get",
+					url: "https://oaininamosoaininamos.localtunnel.me/loginDo",
+					async: false,
+					data: "username=" + $('#oausername').val() + "&password=" + $('#oapassword').val(),
+					success: function(msg) {
+						//alert(msg + "dddd");
+						if(msg != null) {
+							$('#logins').slideUp();
+							$('#oacontent').slideDown();
+
+						} else {
+
+						}
+					},
+					error: function(a) {
+						alert(a + "登录报错");
+					}
+				});
+
+			}
+
+			function loginover() {
+				$.ajax({
+					type: "get",
+					url: "https://oaininamosoaininamos.localtunnel.me/loginOver",
+					async: false,
+					success: function(msg) {
+						console.log(msg);
+						if(msg) {
+							$('#logins').slideUp();
+							$('#oacontent').slideDown();
+
+						} else {
+							$('#logins').slideDown();
+							$('#oacontent').slideUp();
+
+						}
+					},
+					error: function(a) {
+						alert("注册报错");
+					}
+				});
+			}
+
+			function musiclist() {
+			$.ajax({
+					type: "post",
+					url: "https://oaininamosoaininamos.localtunnel.me/musiclist",
+					async: false,
+					success: function(str) {
+						str = JSON.parse(str);
+						for(var x = 0; x < str.length; x++) {
+							$('#musclistall').html($('#musclistall').html() + "<p class='ps' songnum=" + x + ">" + str[x].musicname + "</p>");
+							$('#musclistall').children('p').click(function() {
+								musicpath = '';
+								musicpath = "http://stroage.oainin.com/" + $(this).text();
+								songloading = $(this).attr('songnum');
+								s.src = musicpath;
+								//alert($(this).text());
+								setInterval(function() {
+									var sss = s.duration;
+									var ss = s.currentTime;
+									if(ss == sss) {
+										if(songloading == str.length - 1) {
+											songloading = 0;
+											musicpath = "http://stroage.oainin.com/" + $('#musclistall p:eq(' + songloading + ')').text();
+											s.src = musicpath;
+
+											$('.songname').text($('#musclistall p:eq(' + songloading + ')').text());
+											s.play();
+										} else {
+											songloading++;
+											musicpath = "http://stroage.oainin.com/" + $('#musclistall p:eq(' + songloading + ')').text();
+											s.src = musicpath;
+											$('.songname').text($('#musclistall p:eq(' + songloading + ')').text());
+											s.play();
+
+										}
+									}
+								}, 1000);
+
+								s.play();
+								$('.songname').text('');
+								$('.songname').text($(this).text());
+								$('#play').attr("class", "glyphicon glyphicon-pause");
+								setInterval(function() {
+									var sss = s.duration;
+									var num = sss / 100;
+									var ss = s.currentTime;
+									$('#loading_load').css({
+										"width": ss / num + "%"
+									});
+
+								}, 1000);
+							});
+						}
+					},
+					error: function(str) {
+						//<div id="logoxuann"><img src="img/O.png"><img src="img/AI.png"><img src="img/you.png"></div>
+						$('#notice').html('');
+						$('#notice').html('<div class="alert alert-warning alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>警告！音乐服务器停止运行，请稍后！</div>');;
+					}
+				});
+			}
+
+	
+
+			document.onreadystatechange = se;
+
+			function se() {
+				if(document.readyState == "interactive") {
+					$('#zemujindu').css("width", "50%");
+					var num = 50;
+					var timer = setInterval(function() {
+						num++;
+						$('#zemujindu').css("width", num + "%");
+						if(num >= 99) {
+							window.clearInterval(timer);
+						}
+					}, 1000);
+				} else if(document.readyState == "complete") {
+					$('#zemujindu').css("width", "100%");
+					$('#zemu').css("display", "none");
+					$('#pc').css("display", "block");
+				}
+			}
+		</script>
 	</body>
 
 </html>
